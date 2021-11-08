@@ -134,7 +134,7 @@ def main_original():
         encrypt(0b1110001110, 0b10101010)
     t2 = time()
     print("Elapsed time for 1,000 encryptions: {:0.3f}s".format(t2 - t1))
-    exit()
+    #exit()
 
 if __name__ == '__main__':
     main_original()
@@ -143,4 +143,4 @@ if __name__ == '__main__':
     for i in st:
         a = encrypt(key, ord(i))
         b = decrypt(key, a)
-        print i, " - ", chr(b)
+        print(i, " - ", chr(b))
