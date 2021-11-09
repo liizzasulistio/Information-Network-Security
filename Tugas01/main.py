@@ -32,6 +32,7 @@ def main():
     plaintext = input("Masukkan plaintext: ")
     key = input("Masukkan key: ")
     k = ord(key)
+    # k = 0b11100011
 
     print("Pilih counter IV yang diinginkan, 1 untuk memasukkan sendiri dan 2 untuk random")
     chose = int(input("Pilihan: "))

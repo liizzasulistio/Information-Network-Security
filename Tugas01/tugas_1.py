@@ -139,8 +139,8 @@ if __name__ == "__main__" :
     cbc_iv = "z"
 
     plaintext = input("Masukkan plaintext: ")
-    key = input("Masukkan key CTR: ")
-    k = ord(key)
+    key = "k"
+    ctr_key = ord(key)
 
     print("Pilih counter IV yang diinginkan, 1 untuk memasukkan sendiri dan 2 untuk random")
     chose = int(input("Pilihan: "))
@@ -158,4 +158,4 @@ if __name__ == "__main__" :
     print("--- Hasil CBC : ---")
     cbc_imp(cbc_key, cbc_iv, plaintext)
     print("--- Hasil CTR : ---")
-    ctr_implementation(k, ctr_iv, plaintext)
+    ctr_implementation(ctr_key, ctr_iv, plaintext)
