@@ -2,7 +2,7 @@ import sdes
 from sdes import *
 
 def cbc_encrypt(k, plaintext) :
-    k  = 0b1110101111
+    #k  = 0b1110101111
     index = 0; flag = 0;
     current_text = ""
 
@@ -34,16 +34,23 @@ def cbc_imp(k, plaintext) :
     return encrypted
 
 def enkrip_message(k, m) :
-    ciphertext1 = []
-
     h = cbc_imp(k, m)
-    ciphertext1.append(m)
-    ciphertext1.append("||")
-    ciphertext1.append(h)
 
-    enkrip = encrypt(k, ciphertext1)
+    ciphertext1 = m + "||" + h
+    ciphertext2 = ""
+    index = 0
 
-    print(enkrip)
+    for i in ciphertext1 :
+        i = ord(i)
+        i = encrypt(k, i)     # encrypt i with key
+        i = i << 1            # geser 1 bit ke kiri (bitwise op)
+
+        ciphertext2 = ciphertext2 + chr(i)
+        index = index + 1
+
+    #enkrip = encrypt(k, ciphertext1)
+
+    print(ciphertext1, " - ", ciphertext2)
 
 if __name__ == "__main__" :
     k  = 0b1110101111
