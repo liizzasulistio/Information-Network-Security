@@ -19,9 +19,10 @@ def encrypt_msg(message, private_key):
     msg_hashed = hash_message(message)
     encrypted_message = ""
 
-    for i in msg_hashed:
-        i = encrypt(ord(i), private_key)
-        encrypted_message += str(i)
+    # for i in msg_hashed:
+    #     i = encrypt(ord(i), private_key)
+    #     encrypted_message += str(i)
+    encrypted_message = encrypt(msg_hashed, private_key)
     print(encrypted_message)
 
 
@@ -36,4 +37,4 @@ if __name__ == '__main__':
     print("Private Key: ",  private_key)
     print("Public Key: ", public_key)
     # hash_message(message)
-    encrypt(message, private_key)
+    encrypt_msg(message, private_key)
