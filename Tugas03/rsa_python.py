@@ -51,10 +51,10 @@ def generate_keyPairs():
     q = generateRandomPrim()
     
     n = p*q
-    print("n ",n)
+    # print("n ",n)
     '''phi(n) = phi(p)*phi(q)'''
     phi = (p-1) * (q-1) 
-    print("phi ",phi)
+    # print("phi ",phi)
     
     '''choose e coprime to n and 1 > e > phi'''    
     e = random.randint(1, phi)
@@ -63,7 +63,7 @@ def generate_keyPairs():
         e = random.randint(1, phi)
         g = gcd(e, phi)
         
-    print("e=",e," ","phi=",phi)
+    # print("e=",e," ","phi=",phi)
     '''d[1] = modular inverse of e and phi'''
     d = egcd(e, phi)[1]
     

@@ -2,9 +2,9 @@ import hashlib
 
 h = hashlib.sha3_256()
 
-data = b"teknik informatika ITS"
+data = "Hello World!"
 print("Input : ", data)
-h.update(data)
+h.update(data.encode('utf-8'))
 st = ""
 for i in h.digest():
     st += str(hex(i)) + "/"
