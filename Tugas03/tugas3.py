@@ -22,38 +22,48 @@ def encrypt_msg(message, hashed, private_key):
     # for i in msg_hashed:
     #     i = encrypt(ord(i), private_key)
     #     encrypted_message += str(i)
-    encrypted_message = encrypt(hashed, private_key)
-    append_msg = message + "||" + str(encrypted_message)
+    # print(hashed)
+    encrypted_hash = encrypt(hashed, private_key)
+    # append_msg = message + "||" + str(encrypted_message)
+    # append_msg = message.append("||") + encrypted_message
+    # my_list = [str(message)]
+    # print(encrypted_message)
+    # my_list.append(encrypted_message)
     # append_msg = message.append(encrypted_message)
 
     # print(append_msg)
-    return append_msg
+    # return append_msg
+    # print(my_list)
+    return message, encrypted_hash
 
-def decrypt_msg(encrypted_message, hashed, public_key):
-    message = ""
+def decrypt_msg(message, encrypted_hash, hashed, public_key):
+    # message = ""
     checkValid = False
 
     # print(delivered_message)
-    message = encrypted_message.split("||")[0]
-    hashToBeCheck = encrypted_message.split("||")[1]
+    # message = encrypted_message.split("||")[0]
+    # hashToBeCheck = encrypted_message.split("||")[1]
+    # hashToBeCheck = hash_message(hashToBeCheck)
     # print(message)
     # print(hashToBeCheck)
 
+    hashToBeCheck = encrypted_hash
+    # print(hashToBeCheck)
     decrypt_hash = decrypt(hashToBeCheck, public_key)
-    # print(hashed)
+    # print(decrypt_hash)
 
-    # if(hashed == decrypt_hash):
-    #     checkValid = True
+    if(hashed == decrypt_hash):
+        checkValid = True
 
-    # return message, checkValid
+    return message, checkValid
     
 def rsa_implementation(message, private_key, public_key):
     hashed = hash_message(message)
-    encrypted_message = encrypt_msg(message, hashed, private_key)
-    # print("Delivered: " + encrypted_message)
-    decrypt_msg(encrypted_message, hashed, public_key)
-    # decrypted_message, checkValid = decrypt_msg(encrypted_message, hashed, public_key)
-    # print("Received: " + decrypted_message, checkValid)
+    message, encrypted_hash = encrypt_msg(message, hashed, private_key)
+    print("Delivered: " + message)
+    # decrypt_msg(message, encrypted_hash, hashed, public_key)
+    decrypted_message, checkValid = decrypt_msg(message, encrypted_hash, hashed, public_key)
+    print("Received: " + decrypted_message, checkValid)
 
 
 

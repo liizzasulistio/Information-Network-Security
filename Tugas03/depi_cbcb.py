@@ -126,11 +126,12 @@ def rsa_imp(private_key, public_key, m) :
 
     hashed = hash_message(m)
     encrypted_hash = encrypt_out(private_key, hashed)
-    #hash_append = m + "||" + encrypted_hash
+    # hash_append = m + "||" + encrypted_hash
 
     #print("Ini Appended Hash : ", hash_append)
 
     decrypted_hash = decrypt_out(public_key, encrypted_hash)
+    # print(decrypted_hash)
 
     if(hashed == decrypted_hash) :
         checker = True
