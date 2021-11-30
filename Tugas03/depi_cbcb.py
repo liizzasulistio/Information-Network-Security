@@ -103,40 +103,43 @@ def hash_message(message) :
     #print(hashed_msg)
     return hashed_msg
 
-def encrypt_out(private_key, message) :
+def encrypt_out(message, private_key) :
     ciphertext2 = []
-
-    #for i in message :
     ciphertext2 = encrypt(message, private_key)
-    #ciphertext2 = ciphertext2 + i
     
     return ciphertext2
 
-def decrypt_out(public_key, cipher) :
+def decrypt_out(cipher, public_key) :
     plaintext2 = []
-
-    #for i in cipher :
     plaintext2 = decrypt(cipher, public_key)
-    #plaintext2 = plaintext2 + i
 
     return plaintext2
 
 def rsa_imp(private_key, public_key, m) :
     checker = False
 
-    hashed = hash_message(m)
-    encrypted_hash = encrypt_out(private_key, hashed)
-    # hash_append = m + "||" + encrypted_hash
+    hashed1 = hash_message(m)
+    print("---------------- HASH ONLY -----------------")
+    print(hashed1, "\n")
+    encrypted_hash = encrypt_out(hashed1, private_key)
 
-    #print("Ini Appended Hash : ", hash_append)
+    hash_pad = bytes("||", encoding='UTF-8')
+    hash_append = [m, hash_pad, encrypted_hash]
+    print("-------------- APPENDED HASH ---------------")
+    print(hash_append, "\n")
 
-    decrypted_hash = decrypt_out(public_key, encrypted_hash)
-    # print(decrypted_hash)
+    original_message = hash_append[0]
+    encrypted = hash_append[2]
 
-    if(hashed == decrypted_hash) :
+    hashed2 = hash_message(original_message)
+    decrypted_hash = decrypt_out(encrypted, public_key)
+
+    print("------------- DECRYPTED HASH ---------------")
+    print(decrypted_hash, "\n")
+
+
+    if(hashed2 == decrypted_hash) :
         checker = True
-
-    print("Decrypted Hash : ", decrypted_hash)
     print("Hasil Cek : ", checker)
 
 if __name__ == '__main__':
@@ -148,9 +151,3 @@ if __name__ == '__main__':
     message = "Hello World" 
 
     rsa_imp(private_key, public_key, message)
-    #plaintext = "Hello World",
-    #print("plaintext =", plaintext)
-    #ctext = encrypt("Hello World",public_key)
-    #print("encrypted  =", ctext)
-    #plaintext = decrypt(ctext, private_key)
-    #print("decrypted =",plaintext)
